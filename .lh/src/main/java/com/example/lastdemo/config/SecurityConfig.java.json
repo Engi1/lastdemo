@@ -1,0 +1,18 @@
+{
+    "sourceFile": "src/main/java/com/example/lastdemo/config/SecurityConfig.java",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 0,
+            "patches": [
+                {
+                    "date": 1725335665702,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                }
+            ],
+            "date": 1725335665702,
+            "name": "Commit-0",
+            "content": "package com.example.lastdemo.config;\r\n\r\nimport org.springframework.context.annotation.Bean;\r\nimport org.springframework.context.annotation.Configuration;\r\nimport org.springframework.security.config.annotation.web.builders.HttpSecurity;\r\nimport org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;\r\nimport org.springframework.security.web.SecurityFilterChain;\r\n\r\n@Configuration\r\n@EnableWebSecurity\r\npublic class SecurityConfig {\r\n\r\n    @Bean\r\n    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {\r\n        http\r\n            .authorizeHttpRequests(authorizeRequests -> \r\n                authorizeRequests.anyRequest().permitAll()\r\n            )\r\n            .csrf().disable(); // CSRF 보호 비활성화\r\n\r\n        return http.build();\r\n    }\r\n}\r\n"
+        }
+    ]
+}

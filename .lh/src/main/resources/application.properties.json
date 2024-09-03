@@ -1,0 +1,22 @@
+{
+    "sourceFile": "src/main/resources/application.properties",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 1,
+            "patches": [
+                {
+                    "date": 1725335451976,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1725335561399,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,6 +1,6 @@\n spring.application.name=lastdemo\n-server.port=8080\n+server.port=8888\n \n # Oracle 데이터베이스 설정\n spring.datasource.url=jdbc:oracle:thin:@localhost:1521:xe\n spring.datasource.username=hr\n"
+                }
+            ],
+            "date": 1725335451976,
+            "name": "Commit-0",
+            "content": "spring.application.name=lastdemo\nserver.port=8080\n\n# Oracle 데이터베이스 설정\nspring.datasource.url=jdbc:oracle:thin:@localhost:1521:xe\nspring.datasource.username=hr\nspring.datasource.password=oracle4U\nspring.datasource.driver-class-name=oracle.jdbc.OracleDriver"
+        }
+    ]
+}

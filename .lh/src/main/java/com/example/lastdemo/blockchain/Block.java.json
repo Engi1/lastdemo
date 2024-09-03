@@ -1,0 +1,22 @@
+{
+    "sourceFile": "src/main/java/com/example/lastdemo/blockchain/Block.java",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 1,
+            "patches": [
+                {
+                    "date": 1725335733032,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1725337020684,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,39 +1,16 @@\n package com.example.lastdemo.blockchain;\r\n \r\n-import java.util.Date;\r\n+import lombok.AllArgsConstructor;\r\n+import lombok.Getter;\r\n+import lombok.Setter;\r\n \r\n+@Getter\r\n+@Setter\r\n+@AllArgsConstructor\r\n public class Block {\r\n     private int index;\r\n     private String previousHash;\r\n     private long timestamp;\r\n     private String data;\r\n     private String hash;\r\n-\r\n-    public Block(int index, String previousHash, long timestamp, String data, String hash) {\r\n-        this.index = index;\r\n-        this.previousHash = previousHash;\r\n-        this.timestamp = timestamp;\r\n-        this.data = data;\r\n-        this.hash = hash;\r\n-    }\r\n-\r\n-    public int getIndex() {\r\n-        return index;\r\n-    }\r\n-\r\n-    public String getPreviousHash() {\r\n-        return previousHash;\r\n-    }\r\n-\r\n-    public long getTimestamp() {\r\n-        return timestamp;\r\n-    }\r\n-\r\n-    public String getData() {\r\n-        return data;\r\n-    }\r\n-\r\n-    public String getHash() {\r\n-        return hash;\r\n-    }\r\n }\r\n"
+                }
+            ],
+            "date": 1725335733032,
+            "name": "Commit-0",
+            "content": "package com.example.lastdemo.blockchain;\r\n\r\nimport java.util.Date;\r\n\r\npublic class Block {\r\n    private int index;\r\n    private String previousHash;\r\n    private long timestamp;\r\n    private String data;\r\n    private String hash;\r\n\r\n    public Block(int index, String previousHash, long timestamp, String data, String hash) {\r\n        this.index = index;\r\n        this.previousHash = previousHash;\r\n        this.timestamp = timestamp;\r\n        this.data = data;\r\n        this.hash = hash;\r\n    }\r\n\r\n    public int getIndex() {\r\n        return index;\r\n    }\r\n\r\n    public String getPreviousHash() {\r\n        return previousHash;\r\n    }\r\n\r\n    public long getTimestamp() {\r\n        return timestamp;\r\n    }\r\n\r\n    public String getData() {\r\n        return data;\r\n    }\r\n\r\n    public String getHash() {\r\n        return hash;\r\n    }\r\n}\r\n"
+        }
+    ]
+}

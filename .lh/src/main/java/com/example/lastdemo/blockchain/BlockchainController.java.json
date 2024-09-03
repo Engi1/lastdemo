@@ -1,0 +1,26 @@
+{
+    "sourceFile": "src/main/java/com/example/lastdemo/blockchain/BlockchainController.java",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 2,
+            "patches": [
+                {
+                    "date": 1725335733029,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1725336583982,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -12,8 +12,11 @@\n \r\n     @Autowired\r\n     private BlockchainService blockchainService;\r\n \r\n+    @Autowired\r\n+    private EthereumService ethereumService;\r\n+\r\n     @GetMapping\r\n     public List<Block> getBlockchain() {\r\n         return blockchainService.getBlockchain();\r\n     }\r\n@@ -21,5 +24,15 @@\n     @PostMapping\r\n     public Block createBlock(@RequestBody String data) {\r\n         return blockchainService.createNewBlock(data);\r\n     }\r\n+\r\n+    @GetMapping(\"/isValid\")\r\n+    public boolean isBlockchainValid() {\r\n+        return blockchainService.isChainValid();\r\n+    }\r\n+\r\n+    @GetMapping(\"/ethereum/client-version\")\r\n+    public String getEthereumClientVersion() {\r\n+        return ethereumService.getClientVersion();\r\n+    }\r\n }\r\n"
+                },
+                {
+                    "date": 1725336896084,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,6 +1,9 @@\n package com.example.lastdemo.blockchain;\r\n \r\n+import io.swagger.v3.oas.annotations.Operation;\r\n+import io.swagger.v3.oas.annotations.responses.ApiResponse;\r\n+import io.swagger.v3.oas.annotations.responses.ApiResponses;\r\n import org.springframework.beans.factory.annotation.Autowired;\r\n import org.springframework.web.bind.annotation.*;\r\n \r\n import java.util.List;\r\n@@ -15,23 +18,44 @@\n \r\n     @Autowired\r\n     private EthereumService ethereumService;\r\n \r\n+    @Operation(summary = \"전체 블록체인 조회\", description = \"블록체인에 있는 모든 블록을 리스트 형태로 반환합니다.\")\r\n+    @ApiResponses(value = {\r\n+            @ApiResponse(responseCode = \"200\", description = \"블록체인 조회 성공\"),\r\n+            @ApiResponse(responseCode = \"500\", description = \"서버 내부 오류\")\r\n+    })\r\n     @GetMapping\r\n     public List<Block> getBlockchain() {\r\n         return blockchainService.getBlockchain();\r\n     }\r\n \r\n+    @Operation(summary = \"새 블록 생성\", description = \"입력된 데이터를 사용하여 새로운 블록을 블록체인에 추가합니다.\")\r\n+    @ApiResponses(value = {\r\n+            @ApiResponse(responseCode = \"200\", description = \"블록 생성 성공\"),\r\n+            @ApiResponse(responseCode = \"400\", description = \"잘못된 데이터 입력\"),\r\n+            @ApiResponse(responseCode = \"500\", description = \"서버 내부 오류\")\r\n+    })\r\n     @PostMapping\r\n     public Block createBlock(@RequestBody String data) {\r\n         return blockchainService.createNewBlock(data);\r\n     }\r\n \r\n+    @Operation(summary = \"블록체인 유효성 검사\", description = \"현재 블록체인이 유효한지 확인합니다.\")\r\n+    @ApiResponses(value = {\r\n+            @ApiResponse(responseCode = \"200\", description = \"블록체인 유효성 검사 성공\"),\r\n+            @ApiResponse(responseCode = \"500\", description = \"서버 내부 오류\")\r\n+    })\r\n     @GetMapping(\"/isValid\")\r\n     public boolean isBlockchainValid() {\r\n         return blockchainService.isChainValid();\r\n     }\r\n \r\n+    @Operation(summary = \"이더리움 클라이언트 버전 조회\", description = \"연결된 이더리움 노드의 클라이언트 버전을 반환합니다.\")\r\n+    @ApiResponses(value = {\r\n+            @ApiResponse(responseCode = \"200\", description = \"이더리움 클라이언트 버전 조회 성공\"),\r\n+            @ApiResponse(responseCode = \"500\", description = \"서버 내부 오류\")\r\n+    })\r\n     @GetMapping(\"/ethereum/client-version\")\r\n     public String getEthereumClientVersion() {\r\n         return ethereumService.getClientVersion();\r\n     }\r\n"
+                }
+            ],
+            "date": 1725335733029,
+            "name": "Commit-0",
+            "content": "package com.example.lastdemo.blockchain;\r\n\r\nimport org.springframework.beans.factory.annotation.Autowired;\r\nimport org.springframework.web.bind.annotation.*;\r\n\r\nimport java.util.List;\r\n\r\n@RestController\r\n@RequestMapping(\"/api/blockchain\")\r\n@CrossOrigin(origins = \"http://localhost:3000\")\r\npublic class BlockchainController {\r\n\r\n    @Autowired\r\n    private BlockchainService blockchainService;\r\n\r\n    @GetMapping\r\n    public List<Block> getBlockchain() {\r\n        return blockchainService.getBlockchain();\r\n    }\r\n\r\n    @PostMapping\r\n    public Block createBlock(@RequestBody String data) {\r\n        return blockchainService.createNewBlock(data);\r\n    }\r\n}\r\n"
+        }
+    ]
+}

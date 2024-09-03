@@ -1,0 +1,18 @@
+{
+    "sourceFile": "src/main/java/com/example/lastdemo/blockchain/EthereumService.java",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 0,
+            "patches": [
+                {
+                    "date": 1725336577266,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                }
+            ],
+            "date": 1725336577266,
+            "name": "Commit-0",
+            "content": "package com.example.lastdemo.blockchain;\r\n\r\nimport org.springframework.stereotype.Service;\r\nimport org.web3j.protocol.Web3j;\r\nimport org.web3j.protocol.core.methods.response.Web3ClientVersion;\r\nimport org.web3j.protocol.http.HttpService;\r\n\r\n@Service\r\npublic class EthereumService {\r\n\r\n    private Web3j web3j;\r\n\r\n    public EthereumService() {\r\n        // Infura 프로젝트 ID를 사용하여 이더리움 메인넷에 연결\r\n        web3j = Web3j.build(new HttpService(\"https://mainnet.infura.io/v3/YOUR_INFURA_PROJECT_ID\"));\r\n    }\r\n\r\n    public String getClientVersion() {\r\n        try {\r\n            Web3ClientVersion web3ClientVersion = web3j.web3ClientVersion().send();\r\n            return web3ClientVersion.getWeb3ClientVersion();\r\n        } catch (Exception e) {\r\n            throw new RuntimeException(\"Error connecting to Ethereum client\", e);\r\n        }\r\n    }\r\n}\r\n"
+        }
+    ]
+}
