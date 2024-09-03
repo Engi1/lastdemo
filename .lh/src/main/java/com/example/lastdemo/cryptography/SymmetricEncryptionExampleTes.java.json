@@ -1,0 +1,18 @@
+{
+    "sourceFile": "src/main/java/com/example/lastdemo/cryptography/SymmetricEncryptionExampleTes.java",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 0,
+            "patches": [
+                {
+                    "date": 1725352332068,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                }
+            ],
+            "date": 1725352332068,
+            "name": "Commit-0",
+            "content": "package com.example.lastdemo.cryptography;\r\n\r\nimport org.junit.jupiter.api.Test;\r\nimport static org.junit.jupiter.api.Assertions.*;\r\n\r\npublic class SymmetricEncryptionExampleTest {\r\n\r\n    @Test\r\n    public void testSymmetricEncryption() throws Exception {\r\n        SymmetricEncryptionExample example = new SymmetricEncryptionExample();\r\n        \r\n        String originalMessage = \"Hello, this is a secret message!\";\r\n        String encryptedMessage = example.encryptMessage(originalMessage);\r\n        String decryptedMessage = example.decryptMessage(encryptedMessage);\r\n\r\n        assertEquals(originalMessage, decryptedMessage);\r\n    }\r\n}\r\n"
+        }
+    ]
+}

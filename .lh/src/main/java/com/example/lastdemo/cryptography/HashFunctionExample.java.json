@@ -1,0 +1,22 @@
+{
+    "sourceFile": "src/main/java/com/example/lastdemo/cryptography/HashFunctionExample.java",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 1,
+            "patches": [
+                {
+                    "date": 1725351720865,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1725352653211,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -3,22 +3,17 @@\n import java.security.MessageDigest;\r\n \r\n public class HashFunctionExample {\r\n \r\n-    public static void main(String[] args) throws Exception {\r\n-        // 원본 메시지\r\n-        String originalMessage = \"Hello, this is a hashed message!\";\r\n-\r\n-        // SHA-256 해시 계산\r\n+    public String generateHash(String message) throws Exception {\r\n         MessageDigest digest = MessageDigest.getInstance(\"SHA-256\");\r\n-        byte[] hashBytes = digest.digest(originalMessage.getBytes(\"UTF-8\"));\r\n+        byte[] hashBytes = digest.digest(message.getBytes(\"UTF-8\"));\r\n \r\n-        // 해시를 16진수 문자열로 변환\r\n         StringBuilder hexString = new StringBuilder();\r\n         for (byte b : hashBytes) {\r\n             String hex = Integer.toHexString(0xff & b);\r\n             if (hex.length() == 1) hexString.append('0');\r\n             hexString.append(hex);\r\n         }\r\n-        System.out.println(\"Hashed Message (SHA-256): \" + hexString.toString());\r\n+        return hexString.toString();\r\n     }\r\n }\r\n"
+                }
+            ],
+            "date": 1725351720865,
+            "name": "Commit-0",
+            "content": "package com.example.lastdemo.cryptography;\r\n\r\nimport java.security.MessageDigest;\r\n\r\npublic class HashFunctionExample {\r\n\r\n    public static void main(String[] args) throws Exception {\r\n        // 원본 메시지\r\n        String originalMessage = \"Hello, this is a hashed message!\";\r\n\r\n        // SHA-256 해시 계산\r\n        MessageDigest digest = MessageDigest.getInstance(\"SHA-256\");\r\n        byte[] hashBytes = digest.digest(originalMessage.getBytes(\"UTF-8\"));\r\n\r\n        // 해시를 16진수 문자열로 변환\r\n        StringBuilder hexString = new StringBuilder();\r\n        for (byte b : hashBytes) {\r\n            String hex = Integer.toHexString(0xff & b);\r\n            if (hex.length() == 1) hexString.append('0');\r\n            hexString.append(hex);\r\n        }\r\n        System.out.println(\"Hashed Message (SHA-256): \" + hexString.toString());\r\n    }\r\n}\r\n"
+        }
+    ]
+}

@@ -1,0 +1,18 @@
+{
+    "sourceFile": "src/main/java/com/example/lastdemo/cryptography/SymmetricEncryptionExample.java",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 0,
+            "patches": [
+                {
+                    "date": 1725352449138,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                }
+            ],
+            "date": 1725352449138,
+            "name": "Commit-0",
+            "content": "package com.example.lastdemo.cryptography;\r\n\r\nimport javax.crypto.Cipher;\r\nimport javax.crypto.KeyGenerator;\r\nimport javax.crypto.SecretKey;\r\nimport java.util.Base64;\r\n\r\npublic class SymmetricEncryptionExample {\r\n\r\n    private SecretKey secretKey;\r\n\r\n    public SymmetricEncryptionExample() throws Exception {\r\n        // AES 키 생성\r\n        KeyGenerator keyGenerator = KeyGenerator.getInstance(\"AES\");\r\n        keyGenerator.init(128); // 128비트 키 크기\r\n        this.secretKey = keyGenerator.generateKey();\r\n    }\r\n\r\n    public String encryptMessage(String message) throws Exception {\r\n        // 메시지 암호화\r\n        Cipher cipher = Cipher.getInstance(\"AES\");\r\n        cipher.init(Cipher.ENCRYPT_MODE, secretKey);\r\n        byte[] encryptedBytes = cipher.doFinal(message.getBytes());\r\n        return Base64.getEncoder().encodeToString(encryptedBytes);\r\n    }\r\n\r\n    public String decryptMessage(String encryptedMessage) throws Exception {\r\n        // 메시지 복호화\r\n        Cipher cipher = Cipher.getInstance(\"AES\");\r\n        cipher.init(Cipher.DECRYPT_MODE, secretKey);\r\n        byte[] decryptedBytes = cipher.doFinal(Base64.getDecoder().decode(encryptedMessage));\r\n        return new String(decryptedBytes);\r\n    }\r\n}\r\n"
+        }
+    ]
+}

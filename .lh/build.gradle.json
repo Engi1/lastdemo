@@ -3,7 +3,7 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 2,
+            "activePatchIndex": 3,
             "patches": [
                 {
                     "date": 1725335365135,
@@ -16,6 +16,10 @@
                 {
                     "date": 1725335505908,
                     "content": "Index: \n===================================================================\n--- \n+++ \n@@ -40,9 +40,8 @@\n \ttestImplementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter-test:3.0.3'\n \ttestImplementation 'org.springframework.security:spring-security-test'\n \ttestRuntimeOnly 'org.junit.platform:junit-platform-launcher'\n \timplementation 'com.oracle.database.jdbc:ojdbc8:19.17.0.0' //오라클\n-\n \t//추가된 의존성\n \n }\n \n"
+                },
+                {
+                    "date": 1725343611113,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -29,10 +29,8 @@\n \timplementation 'org.springframework.boot:spring-boot-starter-web'\n \timplementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter:3.0.3'\n \timplementation 'org.thymeleaf.extras:thymeleaf-extras-springsecurity6'\n \timplementation 'org.springframework.boot:spring-boot-starter-data-jpa'\n-\timplementation 'org.web3j:core:4.9.4' // 블록체인 관련 의존성 (예: Web3j)\n-\timplementation 'org.springdoc:springdoc-openapi-starter-webmvc-ui:2.2.0' // Swagger/OpenAPI 의존성\n \tcompileOnly 'org.projectlombok:lombok'\n \tdevelopmentOnly 'org.springframework.boot:spring-boot-devtools'\n \truntimeOnly 'com.mysql:mysql-connector-j'\n \tannotationProcessor 'org.projectlombok:lombok'\n@@ -41,9 +39,10 @@\n \ttestImplementation 'org.springframework.security:spring-security-test'\n \ttestRuntimeOnly 'org.junit.platform:junit-platform-launcher'\n \timplementation 'com.oracle.database.jdbc:ojdbc8:19.17.0.0' //오라클\n \t//추가된 의존성\n-\n+\timplementation 'org.web3j:core:4.9.4' // 블록체인 관련 의존성 (예: Web3j)\n+\timplementation 'org.springdoc:springdoc-openapi-starter-webmvc-ui:2.2.0' // Swagger/OpenAPI 의존성\n }\n \n tasks.named('test') {\n \tuseJUnitPlatform()\n"
                 }
             ],
             "date": 1725335365135,
