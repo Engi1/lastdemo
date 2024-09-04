@@ -3,7 +3,7 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 2,
+            "activePatchIndex": 3,
             "patches": [
                 {
                     "date": 1725351708734,
@@ -16,6 +16,10 @@
                 {
                     "date": 1725354753837,
                     "content": "Index: \n===================================================================\n--- \n+++ \n@@ -0,0 +1,36 @@\n+package com.example.lastdemo.cryptography;\r\n+\r\n+import java.security.KeyPair;\r\n+import java.security.KeyPairGenerator;\r\n+import java.security.PrivateKey;\r\n+import java.security.PublicKey;\r\n+import javax.crypto.Cipher;\r\n+import java.util.Base64;\r\n+\r\n+public class AsymmetricEncryptionExample {\r\n+\r\n+    private PublicKey publicKey;\r\n+    private PrivateKey privateKey;\r\n+\r\n+    public AsymmetricEncryptionExample() throws Exception {\r\n+        KeyPairGenerator keyPairGenerator = KeyPairGenerator.getInstance(\"RSA\");\r\n+        keyPairGenerator.initialize(2048);\r\n+        KeyPair keyPair = keyPairGenerator.generateKeyPair();\r\n+        this.publicKey = keyPair.getPublic();\r\n+        this.privateKey = keyPair.getPrivate();\r\n+    }\r\n+\r\n+    public String encryptMessage(String message) throws Exception {\r\n+        Cipher cipher = Cipher.getInstance(\"RSA/ECB/PKCS1Padding\");\r\n+        cipher.init(Cipher.ENCRYPT_MODE, publicKey);\r\n+        byte[] encryptedBytes = cipher.doFinal(message.getBytes(\"UTF-8\"));\r\n+        return Base64.getEncoder().encodeToString(encryptedBytes);\r\n+    }\r\n+\r\n+    public String decryptMessage(String encryptedMessage) throws Exception {\r\n+        Cipher cipher = Cipher.getInstance(\"RSA/ECB/PKCS1Padding\");\r\n+        cipher.init(Cipher.DECRYPT_MODE, privateKey);\r\n+        byte[] decryptedBytes = cipher.doFinal(Base64.getDecoder().decode(encryptedMessage));\r\n+        return new String(decryptedBytes, \"UTF-8\");\r\n+    }\r\n+}\r\n"
+                },
+                {
+                    "date": 1725437423087,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -8,17 +8,21 @@\n import java.util.Base64;\r\n \r\n public class AsymmetricEncryptionExample {\r\n \r\n-    private PublicKey publicKey;\r\n-    private PrivateKey privateKey;\r\n+    private static PublicKey publicKey;\r\n+    private static PrivateKey privateKey;\r\n \r\n-    public AsymmetricEncryptionExample() throws Exception {\r\n-        KeyPairGenerator keyPairGenerator = KeyPairGenerator.getInstance(\"RSA\");\r\n-        keyPairGenerator.initialize(2048);\r\n-        KeyPair keyPair = keyPairGenerator.generateKeyPair();\r\n-        this.publicKey = keyPair.getPublic();\r\n-        this.privateKey = keyPair.getPrivate();\r\n+    static {\r\n+        try {\r\n+            KeyPairGenerator keyPairGenerator = KeyPairGenerator.getInstance(\"RSA\");\r\n+            keyPairGenerator.initialize(2048);\r\n+            KeyPair keyPair = keyPairGenerator.generateKeyPair();\r\n+            publicKey = keyPair.getPublic();\r\n+            privateKey = keyPair.getPrivate();\r\n+        } catch (Exception e) {\r\n+            e.printStackTrace();\r\n+        }\r\n     }\r\n \r\n     public String encryptMessage(String message) throws Exception {\r\n         Cipher cipher = Cipher.getInstance(\"RSA/ECB/PKCS1Padding\");\r\n"
                 }
             ],
             "date": 1725351708734,
