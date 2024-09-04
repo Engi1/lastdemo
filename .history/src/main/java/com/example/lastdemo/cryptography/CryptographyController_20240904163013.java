@@ -9,6 +9,23 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/api/cryptography")
 public class CryptographyController {
 
+    private static final String PUBLIC_KEY_STR = "여기에_생성된_공개키_문자열_복사";
+    private static final String PRIVATE_KEY_STR = "여기에_생성된_개인키_문자열_복사";
+
+    private final DigitalSignatureExample digitalSignatureExample;
+
+    public CryptographyController() {
+        DigitalSignatureExample tempExample;
+        try {
+            tempExample = new DigitalSignatureExample(PUBLIC_KEY_STR, PRIVATE_KEY_STR);
+        } catch (Exception e) {
+            e.printStackTrace();
+            // 로그를 추가하거나 사용자 정의 예외를 던질 수 있습니다.
+            tempExample = null;  // 또는 적절한 예외 처리를 추가하세요.
+        }
+        this.digitalSignatureExample = tempExample;
+    }
+
     // 대칭 암호화 (AES)
     @Operation(summary = "대칭 암호화 (AES)", description = "주어진 메시지를 AES 대칭 암호화 알고리즘으로 암호화합니다.")
     @ApiResponses(value = {
@@ -68,26 +85,24 @@ public class CryptographyController {
     }
 
     // 디지털 서명 생성
-    @Operation(summary = "디지털 서명 생성", description = "주어진 메시지에 대해 RSA를 이용한 디지털 서명을 생성합니다.")
+    @Operation(summary = "디지털 서명 생성", description = "주어진 메시지에 대해 RSA 알고리즘으로 디지털 서명을 생성합니다.")
     @ApiResponses(value = {
         @ApiResponse(responseCode = "200", description = "서명 생성 성공"),
         @ApiResponse(responseCode = "500", description = "서버 오류")
     })
     @PostMapping("/sign")
     public String sign(@RequestParam("message") String message) throws Exception {
-        DigitalSignatureExample example = new DigitalSignatureExample();
-        return example.signMessage(message);
+        return digitalSignatureExample.signMessage(message);
     }
 
     // 디지털 서명 검증
-    @Operation(summary = "디지털 서명 검증", description = "주어진 메시지와 서명을 이용해 디지털 서명을 검증합니다.")
+    @Operation(summary = "디지털 서명 검증", description = "주어진 메시지와 서명을 사용해 RSA 알고리즘으로 서명을 검증합니다.")
     @ApiResponses(value = {
         @ApiResponse(responseCode = "200", description = "서명 검증 성공"),
         @ApiResponse(responseCode = "500", description = "서버 오류")
     })
     @PostMapping("/verify")
     public boolean verify(@RequestParam("message") String message, @RequestParam("signature") String signature) throws Exception {
-        DigitalSignatureExample example = new DigitalSignatureExample();
-        return example.verifySignature(message, signature);
+        return digitalSignatureExample.verifySignature(message, signature);
     }
 }

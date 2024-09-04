@@ -67,6 +67,10 @@ public class CryptographyController {
         return example.generateHash(message);
     }
 
+    @RestController
+@RequestMapping("/api/cryptography")
+public class CryptographyController {
+
     // 디지털 서명 생성
     @Operation(summary = "디지털 서명 생성", description = "주어진 메시지에 대해 RSA를 이용한 디지털 서명을 생성합니다.")
     @ApiResponses(value = {
@@ -90,4 +94,8 @@ public class CryptographyController {
         DigitalSignatureExample example = new DigitalSignatureExample();
         return example.verifySignature(message, signature);
     }
+}
+
+
+
 }
