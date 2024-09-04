@@ -3,11 +3,15 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 0,
+            "activePatchIndex": 1,
             "patches": [
                 {
                     "date": 1725352449138,
                     "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1725353949085,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -0,0 +1,33 @@\n+package com.example.lastdemo.cryptography;\r\n+\r\n+import javax.crypto.Cipher;\r\n+import javax.crypto.KeyGenerator;\r\n+import javax.crypto.SecretKey;\r\n+import javax.crypto.spec.SecretKeySpec;\r\n+import java.util.Base64;\r\n+\r\n+public class SymmetricEncryptionExample {\r\n+\r\n+    private SecretKey secretKey;\r\n+\r\n+    public SymmetricEncryptionExample() throws Exception {\r\n+        // 고정된 키를 사용하여 테스트 (실제 환경에서는 안전하게 키를 관리해야 함)\r\n+        String keyString = \"1234567890123456\"; // 16바이트 길이의 키\r\n+        byte[] decodedKey = keyString.getBytes();\r\n+        this.secretKey = new SecretKeySpec(decodedKey, 0, decodedKey.length, \"AES\");\r\n+    }\r\n+\r\n+    public String encryptMessage(String message) throws Exception {\r\n+        Cipher cipher = Cipher.getInstance(\"AES/ECB/PKCS5Padding\");\r\n+        cipher.init(Cipher.ENCRYPT_MODE, secretKey);\r\n+        byte[] encryptedBytes = cipher.doFinal(message.getBytes(\"UTF-8\"));\r\n+        return Base64.getEncoder().encodeToString(encryptedBytes);\r\n+    }\r\n+\r\n+    public String decryptMessage(String encryptedMessage) throws Exception {\r\n+        Cipher cipher = Cipher.getInstance(\"AES/ECB/PKCS5Padding\");\r\n+        cipher.init(Cipher.DECRYPT_MODE, secretKey);\r\n+        byte[] decryptedBytes = cipher.doFinal(Base64.getDecoder().decode(encryptedMessage));\r\n+        return new String(decryptedBytes, \"UTF-8\");\r\n+    }\r\n+}\r\n"
                 }
             ],
             "date": 1725352449138,
