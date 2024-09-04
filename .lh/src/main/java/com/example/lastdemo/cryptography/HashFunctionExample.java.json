@@ -3,7 +3,7 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 1,
+            "activePatchIndex": 2,
             "patches": [
                 {
                     "date": 1725351720865,
@@ -12,6 +12,10 @@
                 {
                     "date": 1725352653211,
                     "content": "Index: \n===================================================================\n--- \n+++ \n@@ -3,22 +3,17 @@\n import java.security.MessageDigest;\r\n \r\n public class HashFunctionExample {\r\n \r\n-    public static void main(String[] args) throws Exception {\r\n-        // 원본 메시지\r\n-        String originalMessage = \"Hello, this is a hashed message!\";\r\n-\r\n-        // SHA-256 해시 계산\r\n+    public String generateHash(String message) throws Exception {\r\n         MessageDigest digest = MessageDigest.getInstance(\"SHA-256\");\r\n-        byte[] hashBytes = digest.digest(originalMessage.getBytes(\"UTF-8\"));\r\n+        byte[] hashBytes = digest.digest(message.getBytes(\"UTF-8\"));\r\n \r\n-        // 해시를 16진수 문자열로 변환\r\n         StringBuilder hexString = new StringBuilder();\r\n         for (byte b : hashBytes) {\r\n             String hex = Integer.toHexString(0xff & b);\r\n             if (hex.length() == 1) hexString.append('0');\r\n             hexString.append(hex);\r\n         }\r\n-        System.out.println(\"Hashed Message (SHA-256): \" + hexString.toString());\r\n+        return hexString.toString();\r\n     }\r\n }\r\n"
+                },
+                {
+                    "date": 1725437913333,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,14 +1,27 @@\n package com.example.lastdemo.cryptography;\r\n \r\n import java.security.MessageDigest;\r\n \r\n+/**\r\n+ * HashFunctionExample 클래스는 SHA-256 알고리즘을 사용하여\r\n+ * 메시지의 해시 값을 생성하는 기능을 제공합니다.\r\n+ */\r\n public class HashFunctionExample {\r\n \r\n+    /**\r\n+     * 주어진 메시지에 대한 SHA-256 해시 값을 생성합니다.\r\n+     * \r\n+     * @param message 해시 값을 생성할 메시지\r\n+     * @return 생성된 해시 값을 16진수로 표현한 문자열\r\n+     * @throws Exception 해시 생성 과정에서 발생할 수 있는 예외\r\n+     */\r\n     public String generateHash(String message) throws Exception {\r\n+        // SHA-256 해시 알고리즘을 사용하여 해시 값을 생성\r\n         MessageDigest digest = MessageDigest.getInstance(\"SHA-256\");\r\n         byte[] hashBytes = digest.digest(message.getBytes(\"UTF-8\"));\r\n \r\n+        // 해시 값을 16진수 문자열로 변환\r\n         StringBuilder hexString = new StringBuilder();\r\n         for (byte b : hashBytes) {\r\n             String hex = Integer.toHexString(0xff & b);\r\n             if (hex.length() == 1) hexString.append('0');\r\n"
                 }
             ],
             "date": 1725351720865,
